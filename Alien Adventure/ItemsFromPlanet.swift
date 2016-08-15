@@ -12,10 +12,10 @@ extension Hero {
         var itemsFromGlinda = [UDItem]()
         
         for item in inventory {
-            if let planetOfOrigins = item.historicalData["PlanetOfOrigin"] {
+            if let planetOfOrigin = item.historicalData["PlanetOfOrigin"] {
                 
                 //needs to be of String type for comparison
-                if planetOfOrigins as? String == planet {
+                if planetOfOrigin as? String == planet {
                     itemsFromGlinda.append(item)
                 }
                 
@@ -26,5 +26,3 @@ extension Hero {
     }
     
 }
-
-// If you have completed this function and it is working correctly, feel free to skip this part of the adventure by opening the "Under the Hood" folder, and making the following change in Settings.swift: "static var RequestsToSkip = 1"
