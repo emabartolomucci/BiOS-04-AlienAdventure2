@@ -2,15 +2,30 @@
 //  RarityOfItems.swift
 //  Alien Adventure
 //
-//  Created by Jarrod Parkes on 10/4/15.
-//  Copyright © 2015 Udacity. All rights reserved.
+//  Edited by Emanuele Bartolomucci on 2016/08/16.
 //
 
 extension Hero {
     
     func rarityOfItems(inventory: [UDItem]) -> [UDItemRarity:Int] {
-        return [UDItemRarity:Int]()
+        
+        var rareItemsCount : [UDItemRarity:Int] = [ .Common: 0, .Uncommon: 0, .Rare: 0, .Legendary: 0 ] ;
+        
+        for item in inventory {
+            
+            switch item.rarity {
+            case .Common:
+                rareItemsCount[.Common] = rareItemsCount[.Common]! + 1
+            case .Uncommon:
+                rareItemsCount[.Uncommon] = rareItemsCount[.Uncommon]! + 1
+            case .Rare:
+                rareItemsCount[.Rare] = rareItemsCount[.Rare]! + 1
+            case .Legendary:
+                rareItemsCount[.Legendary] = rareItemsCount[.Legendary]! + 1
+            }
+            
+        }
+        
+        return rareItemsCount
     }
 }
-
-// If you have completed this function and it is working correctly, feel free to skip this part of the adventure by opening the "Under the Hood" folder, and making the following change in Settings.swift: "static var RequestsToSkip = 4"

@@ -2,7 +2,7 @@
 //  Settings.swift
 //  Alien Adventure
 //
-//  Edited by Emanuele Bartolomucci on 2016/08/15.
+//  Edited by Emanuele Bartolomucci on 2016/08/16.
 //
 
 import UIKit
@@ -19,7 +19,7 @@ struct Settings {
         static let FontColor = UIColor.whiteColor()
         static var Level = 1
         static var ShowBadges = false
-        static let RequestsToSkip = 3
+        static let RequestsToSkip = 4
     }
     
     // MARK: Dialogue (Set by UDDataLoader)
