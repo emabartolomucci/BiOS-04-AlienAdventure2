@@ -2,8 +2,7 @@
 //  BannedItems.swift
 //  Alien Adventure
 //
-//  Created by Jarrod Parkes on 10/4/15.
-//  Copyright © 2015 Udacity. All rights reserved.
+//  Edited by Emanuele Bartolomucci on 2016/08/16.
 //
 
 import Foundation
@@ -11,8 +10,42 @@ import Foundation
 extension Hero {
     
     func bannedItems(dataFile: String) -> [Int] {
-        return [Int]()
+        
+        var bannedItemsID = [Int]()
+        var bannedItem: String?
+        var carbonAge: Int?
+        
+        if let dataFileURL = NSBundle.mainBundle().URLForResource(dataFile, withExtension: "plist") {
+            
+            let inventory = NSArray(contentsOfURL: dataFileURL)
+            
+            for item in inventory! {
+                
+                if let item = item as? NSDictionary {
+                    
+                    if let itemName = item["Name"] as? String {
+                        
+                        bannedItem = itemName
+                        
+                        if let historicalData = item["HistoricalData"] as? [String: AnyObject] {
+                            
+                            if let itemCarbonAge = historicalData["CarbonAge"] as? Int {
+                                
+                                carbonAge = itemCarbonAge
+                                
+                            }
+                        }
+                        
+                        if bannedItem!.lowercaseString.containsString("laser") && carbonAge < 30 {
+                            
+                            bannedItemsID.append(item["ItemID"] as! Int)
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
+        return bannedItemsID
     }
 }
-
-// If you have completed this function and it is working correctly, feel free to skip this part of the adventure by opening the "Under the Hood" folder, and making the following change in Settings.swift: "static var RequestsToSkip = 6"
